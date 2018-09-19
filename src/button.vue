@@ -1,8 +1,6 @@
 <template>
   <button class="g-button" :class="{ [`icon-${iconPosition}`]: icon }">
-    <svg v-if="icon" class="icon">
-      <use :xlink:href="`#icon-${icon}`"></use>
-    </svg>
+    <g-icon v-if="icon" :icon="icon"></g-icon>
     <div class="content">
       <slot>按钮</slot>
     </div>
@@ -18,7 +16,7 @@
         type: String,
         default: 'left',
         validator(value) {
-          return value==='left' || value==='right'
+          return value === 'left' || value === 'right'
         }
       }
     }
@@ -48,21 +46,17 @@
       outline: none;
     }
 
-    &.icon-left{
-      > .icon{
-        order: 1;
+    &.icon-left {
+      > .g-icon {
         margin-right: .3em;
       }
-      > .content{
-        order: 2;
-      }
     }
-    &.icon-right{
-      > .icon{
+    &.icon-right {
+      > .g-icon {
         order: 2;
         margin-left: .3em;
       }
-      > .content{
+      > .content {
         order: 1;
       }
     }
