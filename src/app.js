@@ -102,12 +102,10 @@ const expect = chai.expect
     }
   })
   buttonC.$mount()
-  buttonC.$on('click', ()=> {
-    console.log(1)
-  })
-  let button = buttonC.$el
   let spy = chai.spy(function () {})
+  buttonC.$on('click', spy)
 
+  let button = buttonC.$el
   button.click()
   expect(spy).to.have.been.called()
   buttonC.$el.remove()
