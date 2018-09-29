@@ -42,23 +42,28 @@
 </head>
 <body>
 <div id="app">
-  <g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">
-    设置
-  </g-button>
-  <g-button icon="left" :loading="loading3" @click="loading3 = !loading3">
-    加载中
-  </g-button>
-  <g-button-group>
-    <g-button icon="left">
-      上一页
+  <g-input value="张三" :disabled="true"></g-input>
+  <g-input value="李四" :readonly="true"></g-input>
+  <g-input value="王五"></g-input>
+  <div>
+    <g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">
+      设置
     </g-button>
-    <g-button>
-      更多
+    <g-button icon="left" :loading="loading3" @click="loading3 = !loading3">
+      加载中
     </g-button>
-    <g-button icon="right" icon-position="right">
-      下一页
-    </g-button>
-  </g-button-group>
+    <g-button-group>
+      <g-button icon="left">
+        上一页
+      </g-button>
+      <g-button>
+        更多
+      </g-button>
+      <g-button icon="right" icon-position="right">
+        下一页
+      </g-button>
+    </g-button-group>
+  </div>
 </div>
 <script src="./src/app.js"></script>
 </body>

@@ -10,6 +10,7 @@
 
 <script>
   import Icon from './icon'
+
   export default {
     components: {
       'g-icon': Icon
@@ -32,7 +33,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .g-button {
     display: inline-flex;
     font-size: var(--font-size);
