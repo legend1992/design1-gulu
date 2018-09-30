@@ -21,6 +21,9 @@
       --color: #333;
       --border-color: #999;
       --border-color-hover: #666;
+      --error-color: #f04134;
+      --warning-color: #ffbf00;
+      --success-color: #00a854;
     }
 
     body {
@@ -44,7 +47,9 @@
 <div id="app">
   <g-input value="张三" :disabled="true"></g-input>
   <g-input value="李四" :readonly="true"></g-input>
-  <g-input value="王五"></g-input>
+  <g-input value="王五" :success="true"></g-input>
+  <g-input value="六" error="姓名不可少于2个字"></g-input>
+  <g-input value="" warning="姓名不能为空"></g-input>
   <div>
     <g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">
       设置

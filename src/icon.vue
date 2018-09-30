@@ -1,5 +1,5 @@
 <template>
-  <svg class="g-icon">
+  <svg class="g-icon" :class="`icon-${icon}`">
     <use :xlink:href="`#icon-${icon}`"></use>
   </svg>
 </template>
@@ -15,5 +15,14 @@
   .g-icon {
     width: 1em;
     height: 1em;
+    &.icon-error{
+      fill: var(--error-color);
+    }
+    &.icon-warning{
+      fill: var(--warning-color);
+    }
+    &.icon-success{
+      fill: var(--success-color);
+    }
   }
 </style>
