@@ -29,17 +29,6 @@
     body {
       margin: 20px;
     }
-    @keyframes spin {
-      0%{
-        transform: rotate(0deg);
-      }
-      100%{
-        transform: rotate(360deg);
-      }
-    }
-    .loading{
-      animation: spin 2s infinite linear;
-    }
   </style>
   <script src="./node_modules/vue/dist/vue.min.js"></script>
 </head>
@@ -47,7 +36,7 @@
 <div id="app">
   <g-input value="张三" :disabled="true"></g-input>
   <g-input value="李四" :readonly="true"></g-input>
-  <g-input value="王五" :success="true"></g-input>
+  <g-input value="王五" :success="true" v-model="message"></g-input>
   <g-input value="六" error="姓名不可少于2个字" @change="inputChange"></g-input>
   <g-input value="" warning="姓名不能为空"></g-input>
   <div>

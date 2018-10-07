@@ -10,42 +10,40 @@ describe('Input', () => {
     expect(Input).to.exist;
   });
   describe('props', () => {
+    const Constructor = Vue.extend(Input);
+    let vm;
+    afterEach(()=> {
+      vm.$destroy()
+    })
     it('接收value', () => {
-      const Constructor = Vue.extend(Input);
-      const vm = new Constructor({
+      vm = new Constructor({
         propsData: {
           value: '王五'
         }
       }).$mount();
       const inputElement = vm.$el.querySelector('input');
       expect(inputElement.value).to.equal('王五');
-      vm.$destroy()
     });
     it('接收disabled', () => {
-      const Constructor = Vue.extend(Input);
-      const vm = new Constructor({
+      vm = new Constructor({
         propsData: {
           disabled: true
         }
       }).$mount();
       const inputElement = vm.$el.querySelector('input');
       expect(inputElement.disabled).to.equal(true);
-      vm.$destroy()
     });
     it('接收readonly', () => {
-      const Constructor = Vue.extend(Input);
-      const vm = new Constructor({
+      vm = new Constructor({
         propsData: {
           readonly: true
         }
       }).$mount();
       const inputElement = vm.$el.querySelector('input');
       expect(inputElement.readOnly).to.equal(true);
-      vm.$destroy()
     });
     it('接收error', () => {
-      const Constructor = Vue.extend(Input);
-      const vm = new Constructor({
+      vm = new Constructor({
         propsData: {
           error: '错误'
         }
@@ -54,12 +52,30 @@ describe('Input', () => {
       expect(useElement.getAttribute('xlink:href')).to.equal('#icon-error');
       const messageElement = vm.$el.querySelector('.error-message');
       expect(messageElement.innerText).to.equal('错误');
-      vm.$destroy()
     });
   });
   describe('events', ()=> {
-    it('支持change事件', ()=> {
-
+    const Constructor = Vue.extend(Input);
+    let vm;
+    afterEach(()=> {
+      vm.$destroy()
+    })
+    it('支持change/input/focus/blur事件', ()=> {
+      ['change', 'input', 'focus', 'blur'].forEach((eventName)=> {
+        vm = new Constructor({}).$mount();
+        const callback = sinon.fake();
+        vm.$on(eventName, callback);
+        let event = new Event(eventName);
+        // Object.defineProperty(
+        //   event, 'target', {
+        //     value: {value: 'hi'}, enumerable: true
+        //   }
+        // )
+        let inputElement = vm.$el.querySelector('input');
+        inputElement.dispatchEvent(event);
+        // expect(callback).to.have.been.calledWith('hi');
+        expect(callback).to.have.been.calledWith(event);
+      })
     })
   })
 });

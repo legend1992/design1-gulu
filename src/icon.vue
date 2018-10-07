@@ -12,6 +12,17 @@
 </script>
 
 <style lang="scss" scoped>
+  @keyframes spin {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+  .loading{
+    animation: spin 2s infinite linear;
+  }
   .g-icon {
     width: 1em;
     height: 1em;
