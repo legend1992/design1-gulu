@@ -7,10 +7,10 @@
 <script>
   export default {
     props: {
-      'span': {
+      span: {
         type: Number
       },
-      'offset': {
+      offset: {
         type: Number
       }
     },
@@ -42,7 +42,6 @@
 
 <style scoped lang="scss">
   .col{
-    width: 50%;
     @for $n from 1 through 24 {
       &-#{$n} { width: $n/24 * 100%; }
     }
