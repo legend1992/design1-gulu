@@ -78,16 +78,7 @@
     }
   }
   .col {
-    @for $n from 1 through 24 {
-      &-#{$n} {
-        width: $n/24 * 100%;
-      }
-    }
-    @for $n from 1 through 24 {
-      &-offset-#{$n} {
-        margin-left: $n/24 * 100%;
-      }
-    }
+    @include set-col-widthAndOffset('');
     @media (max-width: 1600px) {
       @include set-col-widthAndOffset(widePc);
     }
