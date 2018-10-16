@@ -32,22 +32,26 @@
         gutter: 0
       }
     },
+    methods: {
+      createClasses (obj, str = '') {
+        if (!obj) { return [] }
+        let array = [];
+        if (obj.span) { array.push(`col-${str}${obj.span}`) }
+        if (obj.offset) { array.push(`col-${str}offset-${obj.offset}`) }
+        return array
+      }
+    },
     computed: {
       colClass() {
-        let {span, offset, phone, ipad, narrowPc, pc, widePc} = this;
+        let { span, offset, phone, ipad, narrowPc, pc, widePc } = this;
+        let createClasses = this.createClasses;
         return [
-          span && 'col-' + span,
-          offset && 'col-offset-' + offset,
-          phone && phone.span && 'col-phone-' + phone.span,
-          phone && phone.offset && 'col-phone-offset-' + phone.offset,
-          ipad && ipad.span && 'col-ipad-' + ipad.span,
-          ipad && ipad.offset && 'col-ipad-offset-' + ipad.offset,
-          narrowPc && narrowPc.span && 'col-narrowPc-' + narrowPc.span,
-          narrowPc && narrowPc.offset && 'col-narrowPc-offset-' + narrowPc.offset,
-          pc && pc.span && 'col-pc-' + pc.span,
-          pc && pc.offset && 'col-pc-offset-' + pc.offset,
-          widePc && widePc.span && 'col-widePc-' + widePc.span,
-          widePc && widePc.offset && 'col-widePc-offset-' + widePc.offset
+          ...createClasses({span, offset}),
+          ...createClasses(phone, 'phone-'),
+          ...createClasses(ipad, 'ipad-'),
+          ...createClasses(narrowPc, 'narrowPc-'),
+          ...createClasses(pc, 'pc-'),
+          ...createClasses(widePc, 'widePc-')
         ]
       },
       colStyle() {
@@ -67,12 +71,12 @@
 <style scoped lang="scss">
   @mixin set-col-widthAndOffset($name) {
     @for $n from 1 through 24 {
-      &.col-#{$name}-#{$n} {
+      &.col#{$name}-#{$n} {
         width: ($n / 24) * 100%;
       }
     }
     @for $n from 1 through 24 {
-      &.#{$name}-offset-#{$n} {
+      &.#{$name}offset-#{$n} {
         margin-left: ($n / 24) * 100%;
       }
     }
@@ -80,19 +84,19 @@
   .col {
     @include set-col-widthAndOffset('');
     @media (max-width: 1600px) {
-      @include set-col-widthAndOffset(widePc);
+      @include set-col-widthAndOffset(-widePc);
     }
     @media (max-width: 1200px) {
-      @include set-col-widthAndOffset(pc);
+      @include set-col-widthAndOffset(-pc);
     }
     @media (max-width: 992px) {
-      @include set-col-widthAndOffset(narrowPc);
+      @include set-col-widthAndOffset(-narrowPc);
     }
     @media (max-width: 768px) {
-      @include set-col-widthAndOffset(ipad);
+      @include set-col-widthAndOffset(-ipad);
     }
     @media (max-width: 576px) {
-      @include set-col-widthAndOffset(phone);
+      @include set-col-widthAndOffset(-phone);
     }
     > div {
       border: 1px solid red;
