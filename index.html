@@ -27,109 +27,132 @@
     }
 
     body {
-      margin: 20px;
+      /*margin: 20px;*/
     }
   </style>
   <script src="./node_modules/vue/dist/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
-  <g-row>
-    <g-col :span="8" :phone="{span:24}">
-      <div>1</div>
-    </g-col>
-    <g-col :span="8" :phone="{span:24}">
-      <div>2</div>
-    </g-col>
-    <g-col :span="8" :phone="{span:24}">
-      <div>3</div>
-    </g-col>
-    <g-col :span="8" :phone="{span:24}">
-      <div>4</div>
-    </g-col>
-    <g-col :span="8" :phone="{span:24}">
-      <div>5</div>
-    </g-col>
-    <g-col :span="8" :phone="{span:24}">
-      <div>6</div>
-    </g-col>
-  </g-row>
-  <g-row>
-    <g-col
-      :span="2"
-      :phone="{span:24}"
-      :ipad="{span:8}"
-      :narrow-pc="{span:4}"
-      :pc="{span:2}"
-      :wide-pc="{span:1}"
-    >
-      1
-    </g-col>
-    <g-col
-      :span="22"
-      :phone="{span:24}"
-      :ipad="{span:16}"
-      :narrow-pc="{span:20}"
-      :pc="{span:22}"
-      :wide-pc="{span:23}"
-    >11
-    </g-col>
-  </g-row>
-  <g-row :gutter="20" :align="'right'">
-    <g-col>1</g-col>
-    <g-col>2</g-col>
-  </g-row>
-  <g-row :align="'center'">
-    <g-col>1</g-col>
-    <g-col>2</g-col>
-    <g-col>3</g-col>
-  </g-row>
-  <g-row>
-    <g-col
-      :phone="{span: 8}"
-      :ipad="{span: 6}"
-      :narrow-pc="{span: 4}"
-      :pc="{span: 2}"
-      :wide-pc="{span: 1}"
-    >1
-    </g-col>
-    <g-col>2</g-col>
-    <g-col>3</g-col>
-    <g-col>4</g-col>
-  </g-row>
-  <g-row>
-    <g-col :span="2">1</g-col>
-    <g-col :span="20" :offset="2">2</g-col>
-  </g-row>
-  <g-row :gutter="20">
-    <g-col :span="4">1</g-col>
-    <g-col :span="18" :offset="2">2</g-col>
-  </g-row>
+  <!--<g-layout style="height: 100vh;">-->
+    <!--<g-header>header</g-header>-->
+    <!--<g-content>content</g-content>-->
+    <!--<g-footer>footer</g-footer>-->
+  <!--</g-layout>-->
 
-  <g-input value="张三" :disabled="true"></g-input>
-  <g-input value="李四" :readonly="true"></g-input>
-  <g-input value="王五" :success="true" v-model="message"></g-input>
-  <g-input value="六" error="姓名不可少于2个字" @change="inputChange"></g-input>
-  <g-input value="" warning="姓名不能为空"></g-input>
-  <div>
-    <g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">
-      设置
-    </g-button>
-    <g-button icon="left" :loading="loading3" @click="loading3 = !loading3">
-      加载中
-    </g-button>
-    <g-button-group>
-      <g-button icon="left">
-        上一页
-      </g-button>
-      <g-button>
-        更多
-      </g-button>
-      <g-button icon="right" icon-position="right">
-        下一页
-      </g-button>
-    </g-button-group>
-  </div>
+  <g-layout style="height: 100vh;">
+    <g-header>header</g-header>
+    <g-layout>
+      <g-sider>sider</g-sider>
+      <g-content>content</g-content>
+    </g-layout>
+    <g-footer>footer</g-footer>
+  </g-layout>
+
+  <!--<g-layout style="height: 100vh;">-->
+    <!--<g-sider>sider</g-sider>-->
+    <!--<g-layout>-->
+      <!--<g-header>header</g-header>-->
+      <!--<g-content>content</g-content>-->
+      <!--<g-footer>footer</g-footer>-->
+    <!--</g-layout>-->
+  <!--</g-layout>-->
+  <!--<g-row>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>1</div>-->
+    <!--</g-col>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>2</div>-->
+    <!--</g-col>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>3</div>-->
+    <!--</g-col>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>4</div>-->
+    <!--</g-col>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>5</div>-->
+    <!--</g-col>-->
+    <!--<g-col :span="8" :phone="{span:24}">-->
+      <!--<div>6</div>-->
+    <!--</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row>-->
+    <!--<g-col-->
+      <!--:span="2"-->
+      <!--:phone="{span:24}"-->
+      <!--:ipad="{span:8}"-->
+      <!--:narrow-pc="{span:4}"-->
+      <!--:pc="{span:2}"-->
+      <!--:wide-pc="{span:1}"-->
+    <!--&gt;-->
+      <!--1-->
+    <!--</g-col>-->
+    <!--<g-col-->
+      <!--:span="22"-->
+      <!--:phone="{span:24}"-->
+      <!--:ipad="{span:16}"-->
+      <!--:narrow-pc="{span:20}"-->
+      <!--:pc="{span:22}"-->
+      <!--:wide-pc="{span:23}"-->
+    <!--&gt;11-->
+    <!--</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row :gutter="20" :align="'right'">-->
+    <!--<g-col>1</g-col>-->
+    <!--<g-col>2</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row :align="'center'">-->
+    <!--<g-col>1</g-col>-->
+    <!--<g-col>2</g-col>-->
+    <!--<g-col>3</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row>-->
+    <!--<g-col-->
+      <!--:phone="{span: 8}"-->
+      <!--:ipad="{span: 6}"-->
+      <!--:narrow-pc="{span: 4}"-->
+      <!--:pc="{span: 2}"-->
+      <!--:wide-pc="{span: 1}"-->
+    <!--&gt;1-->
+    <!--</g-col>-->
+    <!--<g-col>2</g-col>-->
+    <!--<g-col>3</g-col>-->
+    <!--<g-col>4</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row>-->
+    <!--<g-col :span="2">1</g-col>-->
+    <!--<g-col :span="20" :offset="2">2</g-col>-->
+  <!--</g-row>-->
+  <!--<g-row :gutter="20">-->
+    <!--<g-col :span="4">1</g-col>-->
+    <!--<g-col :span="18" :offset="2">2</g-col>-->
+  <!--</g-row>-->
+
+  <!--<g-input value="张三" :disabled="true"></g-input>-->
+  <!--<g-input value="李四" :readonly="true"></g-input>-->
+  <!--<g-input value="王五" :success="true" v-model="message"></g-input>-->
+  <!--<g-input value="六" error="姓名不可少于2个字" @change="inputChange"></g-input>-->
+  <!--<g-input value="" warning="姓名不能为空"></g-input>-->
+  <!--<div>-->
+    <!--<g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">-->
+      <!--设置-->
+    <!--</g-button>-->
+    <!--<g-button icon="left" :loading="loading3" @click="loading3 = !loading3">-->
+      <!--加载中-->
+    <!--</g-button>-->
+    <!--<g-button-group>-->
+      <!--<g-button icon="left">-->
+        <!--上一页-->
+      <!--</g-button>-->
+      <!--<g-button>-->
+        <!--更多-->
+      <!--</g-button>-->
+      <!--<g-button icon="right" icon-position="right">-->
+        <!--下一页-->
+      <!--</g-button>-->
+    <!--</g-button-group>-->
+  <!--</div>-->
 </div>
 <script src="./src/app.js"></script>
 </body>
