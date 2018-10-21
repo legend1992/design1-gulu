@@ -29,6 +29,18 @@
     body {
       /*margin: 20px;*/
     }
+    .header{
+      background: #000;
+    }
+    .sider{
+      background: #eee;
+    }
+    .content{
+      background: #fff;
+    }
+    .footer{
+      background: #000;
+    }
   </style>
   <script src="./node_modules/vue/dist/vue.min.js"></script>
 </head>
@@ -40,23 +52,23 @@
     <!--<g-footer>footer</g-footer>-->
   <!--</g-layout>-->
 
-  <g-layout style="height: 100vh;">
-    <g-header>header</g-header>
-    <g-layout>
-      <g-sider>sider</g-sider>
-      <g-content>content</g-content>
-    </g-layout>
-    <g-footer>footer</g-footer>
-  </g-layout>
-
   <!--<g-layout style="height: 100vh;">-->
-    <!--<g-sider>sider</g-sider>-->
+    <!--<g-header>header</g-header>-->
     <!--<g-layout>-->
-      <!--<g-header>header</g-header>-->
+      <!--<g-sider>sider</g-sider>-->
       <!--<g-content>content</g-content>-->
-      <!--<g-footer>footer</g-footer>-->
     <!--</g-layout>-->
+    <!--<g-footer>footer</g-footer>-->
   <!--</g-layout>-->
+
+  <g-layout style="height: 100vh;">
+    <g-sider>sider</g-sider>
+    <g-layout>
+      <g-header>header</g-header>
+      <g-content>content</g-content>
+      <g-footer>footer</g-footer>
+    </g-layout>
+  </g-layout>
   <!--<g-row>-->
     <!--<g-col :span="8" :phone="{span:24}">-->
       <!--<div>1</div>-->
