@@ -44,10 +44,11 @@ new Vue({
         closeButton: {
           text: '知道了',
           callback: ()=> {
-            console.log('aasdfsdf')
+            console.log('执行回调')
           }
         },
-        enableHtml: true
+        enableHtml: true,
+        position: 'middle'
       });
     }
   }
