@@ -15,12 +15,11 @@
     name: "toast",
     props: {
       isAutoClose: {
-        type: Boolean,
-        default: true
-      },
-      autoCloseDelay: {
-        type: Number,
-        default: 50000
+        type: [Boolean, Number],
+        default: 3,
+        validator(value) {
+          return value === false || typeof value === 'number'
+        }
       },
       closeButton: {
         type: Object,
@@ -63,7 +62,7 @@
         if (this.isAutoClose) {
           setTimeout(() => {
             this.close()
-          }, this.autoCloseDelay * 1000)
+          }, this.isAutoClose * 1000)
         }
       },
       closeToast() {
