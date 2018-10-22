@@ -33,14 +33,16 @@ new Vue({
     loading1: false,
     loading2: true,
     loading3: false,
-    message: 'hi'
+    message: 'hi',
+    i:0
   },
   methods: {
     inputChange(e){
       console.log(e)
     },
     showToast(){
-      this.$toast('<strong style="color:red">发送成功</strong>', {
+      this.i++;
+      this.$toast(`<strong style="color:red">发送成功${this.i}</strong>`, {
         closeButton: {
           text: '知道了',
           callback: ()=> {
@@ -48,7 +50,7 @@ new Vue({
           }
         },
         enableHtml: true,
-        position: 'middle'
+        position: 'bottom'
       });
     }
   }

@@ -1,10 +1,12 @@
 <template>
-  <div class="toast" :class="toastClass">
-    <div class="message">
-      <div class="content" v-if="enableHtml" v-html="$slots.default[0]"></div>
-      <slot v-else></slot>
+  <div class="wrapper" :class="toastClass">
+    <div class="toast">
+      <div class="message">
+        <div class="content" v-if="enableHtml" v-html="$slots.default[0]"></div>
+        <slot v-else></slot>
+      </div>
+      <span v-if="closeButton" class="closeButton" @click="closeToast">{{closeButton.text}}</span>
     </div>
-    <span v-if="closeButton" class="closeButton" @click="closeToast">{{closeButton.text}}</span>
   </div>
 </template>
 
@@ -54,6 +56,7 @@
     methods: {
       close() {
         this.$el.remove();
+        this.$emit('close');
         this.$destroy();
       },
       autoClose() {
@@ -74,10 +77,55 @@
 <style scoped lang="scss">
   $font-size: 14px;
   $toast-bg: rgba(0, 0, 0, 0.75);
-  .toast {
+  @keyframes fade-in {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 100%;
+    }
+  }
+  @keyframes fade {
+    0%{ opacity: 0; }
+    100%{ opacity: 100%; }
+  }
+  @keyframes slide-down {
+    0%{ opacity: 0; transform: translateY(-100%); }
+    100%{ opacity: 100%; transform: translateY(0); }
+  }
+  @keyframes slide-up {
+    0%{ opacity: 0; transform: translateY(100%); }
+    100%{ opacity: 100%; transform: translateY(0); }
+  }
+  .wrapper{
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    &.position-top {
+      top: 0;
+      .toast{
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        animation: slide-down ease .3s;
+      }
+    }
+    &.position-bottom {
+      bottom: 0;
+      .toast{
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        animation: slide-up ease .3s;
+      }
+    }
+    &.position-middle {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      .toast{
+        animation: fade-in ease .3s;
+      }
+    }
+  }
+  .toast {
     padding: 0 1em;
     display: flex;
     align-items: center;
@@ -87,16 +135,6 @@
     color: #fff;
     font-size: $font-size;
     white-space: nowrap;
-    &.position-top {
-      top: 0;
-    }
-    &.position-bottom {
-      bottom: 0;
-    }
-    &.position-middle {
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
     .message {
       display: inline-block;
       position: relative;
