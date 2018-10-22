@@ -40,7 +40,15 @@ new Vue({
       console.log(e)
     },
     showToast(){
-      this.$toast('toast组件');
+      this.$toast('<strong style="color:red">发送成功</strong>', {
+        closeButton: {
+          text: '知道了',
+          callback: ()=> {
+            console.log('aasdfsdf')
+          }
+        },
+        enableHtml: true
+      });
     }
   }
-})
+});

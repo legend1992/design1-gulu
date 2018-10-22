@@ -1,8 +1,10 @@
 <template>
   <div class="toast">
     <div class="message">
-      <slot></slot>
-    </div><span v-if="closeButton" class="closeButton" @click="closeToast">{{closeButton.text}}</span>
+      <div class="content" v-if="enableHtml" v-html="$slots.default[0]"></div>
+      <slot v-else></slot>
+    </div>
+    <span v-if="closeButton" class="closeButton" @click="closeToast">{{closeButton.text}}</span>
   </div>
 </template>
 
@@ -10,7 +12,7 @@
   export default {
     name: "toast",
     props: {
-      autoClose: {
+      isAutoClose: {
         type: Boolean,
         default: true
       },
@@ -20,34 +22,36 @@
       },
       closeButton: {
         type: Object,
-        default: ()=> {
+        default: () => {
           return {
             text: '关闭',
-            callback: (toast)=> {
-              toast.close()
-            }
+            callback: undefined
           }
         }
+      },
+      enableHtml: {
+        type: Boolean,
+        default: false
       }
     },
-    created(){
-      console.log(this.closeButton);
-    },
-    mounted(){
-      if(this.autoClose) {
-        setTimeout(()=>{
-          this.close()
-        },this.autoCloseDelay * 1000)
-      }
+    mounted() {
+      this.autoClose()
     },
     methods: {
       close() {
         this.$el.remove();
         this.$destroy();
       },
-      closeToast(){
+      autoClose() {
+        if (this.isAutoClose) {
+          setTimeout(() => {
+            this.close()
+          }, this.autoCloseDelay * 1000)
+        }
+      },
+      closeToast() {
         this.close();
-        this.closeButton.callback();
+        this.closeButton && typeof this.closeButton.callback === 'function' ? this.closeButton.callback() : '';
       }
     }
   }
@@ -56,23 +60,28 @@
 <style scoped lang="scss">
   $font-size: 14px;
   $toast-bg: rgba(0, 0, 0, 0.75);
-  .toast{
+  .toast {
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     padding: 0 1em;
+    display: flex;
+    align-items: center;
     background: $toast-bg;
     border-radius: 4px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
     color: #fff;
     font-size: $font-size;
-    .message{
+    white-space: nowrap;
+    .message {
       display: inline-block;
       position: relative;
       padding: .8em 1em .8em 0;
       margin-right: 1em;
-      &::after{
+      text-overflow: ellipsis;
+      white-space: pre-wrap;
+      &::after {
         content: '';
         position: absolute;
         top: 0;
@@ -80,8 +89,11 @@
         right: 0;
         border-right: 1px solid #666;
       }
+      .content {
+        line-height: 1.2;
+      }
     }
-    .closeButton{
+    .closeButton {
       display: inline-block;
     }
   }
