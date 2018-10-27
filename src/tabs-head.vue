@@ -33,6 +33,7 @@
     display: flex;
     justify-content: flex-start;
     position: relative;
+    border-bottom: 1px solid gray;
     .line{
       position: absolute;
       bottom: 0;
