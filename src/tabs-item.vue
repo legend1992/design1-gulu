@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" :class="itemClasses" @click="itemClick">
+  <div class="tabs-item" :class="itemClasses" @click="itemClick" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -26,20 +26,23 @@
     computed: {
       itemClasses() {
         return {
-          active: this.active
+          active: this.active,
+          disabled: this.disabled
         }
       }
     },
     created() {
-      if(this.eventBus){
-        this.eventBus.$on('update:selected', ($event, vm)=> {
+      if (this.eventBus) {
+        this.eventBus.$on('update:selected', ($event, vm) => {
           this.active = $event === this.name
         })
       }
     },
     methods: {
       itemClick() {
-        if(this.disable){ return };
+        if (this.disabled) {
+          return
+        }
         this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
       }
     }
@@ -47,12 +50,17 @@
 </script>
 
 <style lang="scss" scoped>
-  .tabs-item{
+  .tabs-item {
+    display: flex;
     flex-shrink: 0;
     padding: .8em 1em;
     cursor: pointer;
-    &.active{
+    &.active {
       color: blue;
+    }
+    &.disabled {
+      color: gray;
+      cursor: not-allowed;
     }
   }
 </style>

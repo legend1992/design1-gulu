@@ -29,7 +29,6 @@
     mounted() {
       if(this.eventBus){
         this.eventBus.$on('update:selected', ($event)=> {
-          console.log($event);
           this.active = $event === this.name
         })
       }
