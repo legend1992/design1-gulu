@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "tabs-pane",
+    name: "TabsPane",
     inject: ['eventBus'],
     props: {
       name: {
@@ -26,9 +26,10 @@
         }
       }
     },
-    created() {
+    mounted() {
       if(this.eventBus){
         this.eventBus.$on('update:selected', ($event)=> {
+          console.log($event);
           this.active = $event === this.name
         })
       }
@@ -38,8 +39,5 @@
 
 <style lang="scss" scoped>
   .tabs-pane{
-    &.active{
-      background: red;
-    }
   }
 </style>

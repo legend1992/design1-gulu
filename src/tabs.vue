@@ -7,7 +7,7 @@
 <script>
   import Vue from 'vue'
   export default {
-    name: "tabs",
+    name: "Tabs",
     props: {
       selected: {
         type: String,
@@ -31,8 +31,21 @@
         eventBus: this.eventBus
       }
     },
+    methods: {
+      selectTab () {
+        this.$children.forEach((vm) => {
+          if (vm.$options.name === 'TabsHead') {
+            vm.$children.forEach((childVm) => {
+              if (childVm.$options.name === 'TabsItem' && childVm.name === this.selected) {
+                this.eventBus.$emit('update:selected', this.selected, childVm)
+              }
+            })
+          }
+        })
+      }
+    },
     mounted() {
-      this.eventBus.$emit('update:selected', this.selected)
+      this.selectTab()
     }
   }
 </script>

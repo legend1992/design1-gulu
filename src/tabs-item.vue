@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "tabs-item",
+    name: "TabsItem",
     inject: ['eventBus'],
     props: {
       name: {
@@ -32,7 +32,7 @@
     },
     created() {
       if(this.eventBus){
-        this.eventBus.$on('update:selected', ($event)=> {
+        this.eventBus.$on('update:selected', ($event, vm)=> {
           this.active = $event === this.name
         })
       }
@@ -40,7 +40,7 @@
     methods: {
       itemClick() {
         if(this.disable){ return };
-        this.eventBus && this.eventBus.$emit('update:selected', this.name);
+        this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
       }
     }
   }
@@ -49,13 +49,10 @@
 <style lang="scss" scoped>
   .tabs-item{
     flex-shrink: 0;
-    padding: 0 1em;
+    padding: .8em 1em;
     cursor: pointer;
-    height: 100%;
-    display: flex;
-    align-items: center;
     &.active{
-      background: red;
+      color: blue;
     }
   }
 </style>
