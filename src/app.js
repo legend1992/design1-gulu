@@ -53,7 +53,7 @@ new Vue({
     message: 'hi',
     i:0,
     // selectedTab: 'sports',
-    selectedTab: '2'
+    selectedTab: ['2','1']
   },
   methods: {
     inputChange(e){
