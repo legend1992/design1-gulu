@@ -55,33 +55,39 @@
 </head>
 <body>
 <div id="app">
-  <g-popover :position="'top'">
-    <template slot="content">
-      <div>弹窗内容</div>
-    </template>
-    <g-button>点击</g-button>
-  </g-popover>
+  <g-collapse style="width: 400px;margin: 50px;">
+    <g-collapse-item title="标题1">内容1</g-collapse-item>
+    <g-collapse-item title="标题2">内容2</g-collapse-item>
+    <g-collapse-item title="标题3">内容3</g-collapse-item>
+  </g-collapse>
 
-  <g-popover :position="'bottom'">
-    <template slot="content">
-      <div>弹窗内容</div>
-    </template>
-    <g-button>点击</g-button>
-  </g-popover>
+  <!--<g-popover :position="'top'">-->
+    <!--<template slot="content">-->
+      <!--<div>弹窗内容</div>-->
+    <!--</template>-->
+    <!--<g-button>点击</g-button>-->
+  <!--</g-popover>-->
 
-  <g-popover :position="'left'">
-    <template slot="content">
-      <div>弹窗内容</div>
-    </template>
-    <g-button>点击</g-button>
-  </g-popover>
+  <!--<g-popover :position="'bottom'">-->
+    <!--<template slot="content">-->
+      <!--<div>弹窗内容</div>-->
+    <!--</template>-->
+    <!--<g-button>点击</g-button>-->
+  <!--</g-popover>-->
 
-  <g-popover :position="'right'" :trigger="'hover'">
-    <template slot="content">
-      <div>弹窗内容</div>
-    </template>
-    <g-button>点击</g-button>
-  </g-popover>
+  <!--<g-popover :position="'left'">-->
+    <!--<template slot="content">-->
+      <!--<div>弹窗内容</div>-->
+    <!--</template>-->
+    <!--<g-button>点击</g-button>-->
+  <!--</g-popover>-->
+
+  <!--<g-popover :position="'right'" :trigger="'hover'">-->
+    <!--<template slot="content">-->
+      <!--<div>弹窗内容</div>-->
+    <!--</template>-->
+    <!--<g-button>点击</g-button>-->
+  <!--</g-popover>-->
 
   <!--<g-tabs :selected.sync="selectedTab">-->
     <!--<g-tabs-head>-->
